@@ -30,7 +30,7 @@ UScriptFactory::UScriptFactory(const FObjectInitializer &ObjectInitializer)
 
 	bCreateNew = false;
 	bEditorImport = true;
-	bText = true;
+	bText = false;
 	bEditAfterNew = true;
 }
 
@@ -52,20 +52,6 @@ bool UScriptFactory::ConfigureProperties()
 	Options.bEnableClassDynamicLoading = true;
 	Options.NameTypeToDisplay = EClassViewerNameTypeToDisplay::Dynamic;
 
-	/*
-	// Prevent creating blueprints of classes that require special setup (they'll be allowed in the corresponding factories / via other means)
-	TSharedPtr<FBlueprintParentFilter> Filter = MakeShareable(new FBlueprintParentFilter);
-	Options.ClassFilters.Add(Filter.ToSharedRef());
-	if (!IsMacroFactory())
-	{
-		Filter->DisallowedChildrenOfClasses.Add(ALevelScriptActor::StaticClass());
-		Filter->DisallowedChildrenOfClasses.Add(UAnimInstance::StaticClass());
-	}
-
-	// Filter out interfaces in all cases; they can never contain code, so it doesn't make sense to use them as a macro basis
-	Filter->DisallowedChildrenOfClasses.Add(UInterface::StaticClass());
-	*/
-
 	const FText TitleText = NSLOCTEXT("EditorFactories", "CreateScriptOptions", "Pick Parent Class");
 	UClass *ChosenClass = nullptr;
 	const bool bPressedOk = SClassPickerDialog::PickClass(TitleText, Options, ChosenClass, ULuaBlueprintGeneratedClass::StaticClass());
@@ -75,6 +61,22 @@ bool UScriptFactory::ConfigureProperties()
 	}
 
 	return bPressedOk;
+}
+
+// Create a new ULuaScript that just saves the path to the script
+// Other engine can now reference the script using the ULuaScript
+UObject *UScriptFactory::FactoryCreateFile(UClass *InClass,
+										   UObject *InParent,
+										   FName InName,
+										   EObjectFlags Flags,
+										   const FString &Filename,
+										   const TCHAR *Parms,
+										   FFeedbackContext *Warn,
+										   bool &bOutOperationCanceled)
+{
+	// Create the Script reference first
+
+	// Create the Blueprint using the script reference
 }
 
 UObject *UScriptFactory::FactoryCreateNew(UClass *Class, UObject *InParent, FName Name, EObjectFlags Flags, UObject *Context, FFeedbackContext *Warn, FName CallingContext)

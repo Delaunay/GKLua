@@ -20,7 +20,6 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        pip install -e .
         pip install -r Docs/requirements.txt
         sudo apt-get install doxygen graphviz -y
 

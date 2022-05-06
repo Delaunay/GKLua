@@ -21,19 +21,18 @@ class GAMEKIT_API UGKLuaScriptFactory : public UFactory
     GENERATED_BODY()
 
 public:
-    UGKLuaScriptFactory(const FObjectInitializer& ObjectInitializer);
+    UGKLuaScriptFactory(const FObjectInitializer &ObjectInitializer);
 
-    bool FactoryCanImport(const FString& Filename);
+    bool FactoryCanImport(const FString &Filename);
 
     // Create a new ULuaScript that just saves the path to the script
     // Other engine can now reference the script using the ULuaScript
-    UObject* FactoryCreateFile(UClass* InClass,
-                               UObject* InParent,
+    UObject *FactoryCreateFile(UClass *InClass,
+                               UObject *InParent,
                                FName InName,
                                EObjectFlags Flags,
-                               const FString& Filename,
-                               const TCHAR* Parms,
-                               FFeedbackContext* Warn,
-                               bool& bOutOperationCanceled);
-
+                               const FString &Filename,
+                               const TCHAR *Parms,
+                               FFeedbackContext *Warn,
+                               bool &bOutOperationCanceled);
 };

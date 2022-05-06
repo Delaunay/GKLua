@@ -4,6 +4,7 @@
 
 // GKLua
 #include "LuaBlueprintGeneratedClass.h"
+#include "GKLuaScript.h"
 
 // UnrealEngine
 #include "Engine/Blueprint.h"
@@ -28,13 +29,12 @@ public:
 #endif
 
 public:
-	/** Generated script bytecode */
-	UPROPERTY()
-	TArray<uint8> ByteCode;
+	//! Reference ot the lua script that drives this blueprint
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UGKLuaScript *Script;
 
-	/** Script source code. @todo: this should be editor-only */
-	UPROPERTY()
-	FString SourceCode;
+	// TODO move all the logic to the script being updated
+	// to UGKLuaScript, and add a delegate to listen to the change
 
 #if WITH_EDITORONLY_DATA
 	/** Override to ensure we write out the asset import data */
