@@ -2,7 +2,6 @@
 
 // GKLua
 #include "LuaBlueprintGeneratedClass.h"
-#include "GKLuaLog.h"
 #include "LuaIntegration.h"
 
 // Unreal Engine

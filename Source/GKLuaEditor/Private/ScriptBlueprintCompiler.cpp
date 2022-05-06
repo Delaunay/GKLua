@@ -178,8 +178,7 @@ void FScriptBlueprintCompiler::FinishCompilingClass(UClass *Class)
 	ULuaBlueprint *ScriptBP = ScriptBlueprint();
 
 	ULuaBlueprintGeneratedClass *ScriptClass = CastChecked<ULuaBlueprintGeneratedClass>(Class);
-	ScriptClass->SourceCode = ScriptBP->SourceCode;
-	ScriptClass->ByteCode = ScriptBP->ByteCode;
+	ScriptClass->Script = ScriptBP->Script;
 
 	// Allow Blueprint Components to be used in Blueprints
 	if (ScriptBP->ParentClass->IsChildOf(UGKLuaComponent::StaticClass()) && Class != ScriptBP->SkeletonGeneratedClass)

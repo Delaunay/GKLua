@@ -62,8 +62,9 @@ Overview
 
 * GKLuaEditor
 
-  * "Compiles" Lua to bytecode (for cooking), the compilation part does not seem to be implemented
+  * "Compiles" the blueprint
 
+    * Generate the blueprint class from a blueprint a sets up the calls
     * Code is loaded in `FLuaContext::Initialize` when `luaL_loadstring(LuaState, TCHAR_TO_ANSI(*Code)` is called
     * We can use `lua_dump` to retrive the compiled bytecode
     * bytecode can be loaded using `lua_loadstring` NOT `luaL_loadstring` which is currently used
